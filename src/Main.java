@@ -10,7 +10,23 @@ public class Main {
         persons.add(new Person("Fedor", "Dostoevsky", 59));
         persons.add(new Person("Leo", "Tolstoy", 82));
         persons.add(new Person("Ivan", "Bunin", 83));
-        Collections.sort(persons, new PersonComparator());
+
+        Collections.sort(persons, (o1, o2) -> {
+            int lenght1 = o1.getSurname().split("-").length;
+            int lenght2 = o2.getSurname().split("-").length;
+            if (lenght1 < lenght2) {
+                return -1;
+            }
+            return o1.getAge() - o2.getAge();
+
+        });
+
+
+        for (Person person : persons) {
+            System.out.println(person);
+        }
+
+        persons.forEach(System.out :: println);
 
     }
 }
